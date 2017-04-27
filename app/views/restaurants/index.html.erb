@@ -19,7 +19,7 @@
         <td><%= link_to 'Show', restaurant %></td>
         <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
         <td><%= link_to 'Hard Delete', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Soft Delete', soft_delete_restaurant_path(restaurant.id), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Soft Delete', soft_delete_restaurant_path(restaurant.id),method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

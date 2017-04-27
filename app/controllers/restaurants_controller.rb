@@ -4,7 +4,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @restaurants = Restaurant.active
   end
 
   # GET /restaurants/1
@@ -56,14 +56,18 @@ class RestaurantsController < ApplicationController
   def destroy
     @restaurant.destroy
     respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant was successfully destroyed.' }
+      format.html { redirect_to restaurants_url, notice: 'Restaurant has been hard deleted.' }
       format.json { head :no_content }
     end
   end
 
-  # def soft_delete
-
-  # end
+  def soft_delete
+    if !@restaurant.blank? && @restaurant.update_attribute(:delete_flag, true) 
+      redirect_to restaurants_url, notice: 'Restaurant has been soft deleted.' 
+    else
+      redirect_to restaurants_url, notice: 'Restaurant has not been soft deleted.' 
+    end    
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
