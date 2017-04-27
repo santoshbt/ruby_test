@@ -1,4 +1,5 @@
 This small applicaiton demonstrates the Hard and Soft deletes process.<br />
+It uses the Ruby 2.3 and Rails 5.0 versions
 
 Classes:  <br />
 Parent Class - Restaurant <br />
