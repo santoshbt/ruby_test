@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :cuisines
   resources :restaurants do
   	member do 
   		delete :soft_delete
