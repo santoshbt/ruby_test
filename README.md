@@ -1,24 +1,33 @@
-# README
+This small applicaiton demonstrates the Hard and Soft deletes process.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Classes: 
+Parent Class - Restaurant
+Child Class - Cuisine
 
-Things you may want to cover:
+Associations :
+restataurant has_many cuisines
+cuisine belongs_to restaurant
 
-* Ruby version
+Functionality :
+--------------
 
-* System dependencies
+Restaurant:
+Creation, Listing, Show, Hard Delete and Soft Delete of Restaurant.
+Hard Delete will permanantly delete the restaurant data
+Soft Delete will just update a delete flag to true, which makes them inactive
+Listing will list only active Restaurants.
+Delete will delete all associated cuisines.
 
-* Configuration
+Cuisine:
+Creation, Hard Delete and listing the cuisines for respective restaurant.
+There is no Soft delete for cuisine, which can be same logic as that of Restaurant.
+When you open the show page of each restaurant, it will list the cuisines of that restaurant only.
 
-* Database creation
+It has the Feature spec covered in
+spec/features folder
+Rspec and Capybara is used.
+The tests shows most of the user behaviours while visiting the website pages.
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Thanks and Regards,
+Santosh T
