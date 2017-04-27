@@ -54,11 +54,11 @@ class RestaurantsController < ApplicationController
   # DELETE /restaurants/1
   # DELETE /restaurants/1.json
   def destroy
-    @restaurant.destroy
-    respond_to do |format|
-      format.html { redirect_to restaurants_url, notice: 'Restaurant has been hard deleted.' }
-      format.json { head :no_content }
-    end
+    if @restaurant.destroy
+      redirect_to restaurants_url, notice: 'Restaurant has been hard deleted.'
+    else
+      redirect_to restaurants_url, notice: 'Restaurant has not been hard deleted.'
+    end     
   end
 
   def soft_delete
