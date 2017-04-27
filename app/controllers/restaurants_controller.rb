@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    @cuisines = @restaurant.cuisines unless @restaurant.blank?
   end
 
   # GET /restaurants/new

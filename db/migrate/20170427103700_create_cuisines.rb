@@ -3,7 +3,7 @@ class CreateCuisines < ActiveRecord::Migration[5.0]
     create_table :cuisines do |t|
       t.string :name
       t.integer :rating
-      t.restaurant :references
+      t.references :restaurant
 
       t.timestamps
     end

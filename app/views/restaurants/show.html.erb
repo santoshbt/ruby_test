@@ -10,8 +10,21 @@
   <%= @restaurant.description %>
 </p>
 
-<table>
-</table>
-
+<% unless @cuisines.empty? %>
+	<table>
+		<thead>
+			<td> Name </td>
+			<td> Rating </td>
+		</thead>
+		<tbody>
+			<% @cuisines.each do |cuisine| %>
+			<tr>
+				<td> <%= cuisine.name %> </td>
+				<td> <%= cuisine.rating %> </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
 <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
 <%= link_to 'Back', restaurants_path %>

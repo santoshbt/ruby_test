@@ -1,11 +1,12 @@
 class CuisinesController < ApplicationController
   before_action :set_cuisine, only: [:show, :edit, :update, :destroy]
+  before_action :find_restaurant, only: [:new, :show, :create]
 
   # GET /cuisines
   # GET /cuisines.json
-  def index
-    @cuisines = Cuisine.from_active_restaurant
-  end
+  # def index
+  #   @cuisines = Cuisine.from_active_restaurant
+  # end
 
   # GET /cuisines/1
   # GET /cuisines/1.json
@@ -13,8 +14,8 @@ class CuisinesController < ApplicationController
   end
 
   # GET /cuisines/new
-  def new
-    @cuisine = Cuisine.new
+  def new    
+    @cuisine = @restaurant.cuisines.build
   end
 
   # GET /cuisines/1/edit
@@ -24,11 +25,11 @@ class CuisinesController < ApplicationController
   # POST /cuisines
   # POST /cuisines.json
   def create
-    @cuisine = Cuisine.new(cuisine_params)
+    @cuisine = @restaurant.cuisines.build(cuisine_params)    
 
     respond_to do |format|
       if @cuisine.save
-        format.html { redirect_to @cuisine, notice: 'Cuisine was successfully created.' }
+        format.html { redirect_to restaurant_path(@restaurant.id), notice: 'Cuisine was successfully created.' }
         format.json { render :show, status: :created, location: @cuisine }
       else
         format.html { render :new }
@@ -70,5 +71,9 @@ class CuisinesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def cuisine_params
       params.require(:cuisine).permit(:name, :rating, :references)
+    end
+
+    def find_restaurant
+      @restaurant = Restaurant.find(params[:restaurant_id])
     end
 end
