@@ -1,6 +1,6 @@
 class CuisinesController < ApplicationController
   before_action :set_cuisine, only: [:show, :edit, :update, :destroy]
-  before_action :find_restaurant, only: [:new, :show, :create]
+  before_action :find_restaurant, only: [:new, :show, :create, :destroy]
 
   # GET /cuisines
   # GET /cuisines.json
@@ -55,11 +55,11 @@ class CuisinesController < ApplicationController
   # DELETE /cuisines/1
   # DELETE /cuisines/1.json
   def destroy
-    @cuisine.destroy
-    respond_to do |format|
-      format.html { redirect_to cuisines_url, notice: 'Cuisine was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if @cuisine.destroy
+      redirect_to restaurant_path(@restaurant.id), notice: 'Cuisine has been hard deleted'
+    else
+      redirect_to restaurant_path(@restaurant.id), notice: 'Cuisine has not been destroyed.'
+    end 
   end
 
   private

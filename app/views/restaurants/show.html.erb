@@ -21,6 +21,7 @@
 			<tr>
 				<td> <%= cuisine.name %> </td>
 				<td> <%= cuisine.rating %> </td>
+				<td> <%= link_to "Hard Delete", restaurant_cuisine_path(@restaurant.id, cuisine.id), method: 'delete', data: { confirm: 'Are you sure?' } %> </td>				
 			</tr>
 			<% end %>
 		</tbody>
